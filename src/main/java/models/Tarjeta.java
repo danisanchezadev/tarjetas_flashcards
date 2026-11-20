@@ -2,13 +2,23 @@ package models;
 
 public class Tarjeta {
 
+    private int id;
     private String caraDelantera;
     private String caraTrasera;
     private Tema tema;
 
-    public Tarjeta(String caraDelantera, String caraTrasera){
+    public Tarjeta(int id, String caraDelantera, String caraTrasera){
+        this.id = id;
         this.caraDelantera = caraDelantera;
         this.caraTrasera = caraTrasera;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Tema getTema() {

@@ -6,11 +6,21 @@ import java.util.List;
 public class Tematica {
 
     private String nombre;
+    private int id;
     private List<Tema> listaTemas;
 
-    public Tematica(String nombre){
+    public Tematica(int id, String nombre){
+        this.id = id;
         this.nombre = nombre;
         this.listaTemas = new ArrayList<>();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {

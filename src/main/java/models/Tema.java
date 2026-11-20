@@ -5,14 +5,23 @@ import java.util.List;
 
 public class Tema {
 
-
+    private int id;
     private String nombre;
     private List<Tarjeta> listaTarejatas;
 
 
-    public Tema(String nombre){
+    public Tema(int id, String nombre){
+        this.id = id;
         this.nombre = nombre;
         this.listaTarejatas = new ArrayList<>();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {

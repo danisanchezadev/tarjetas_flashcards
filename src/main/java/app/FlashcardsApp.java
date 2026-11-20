@@ -12,7 +12,7 @@ public class FlashcardsApp extends Application {
 
         VistaUsuarios vistaUsuarios = new VistaUsuarios();
 
-        Scene escena = new Scene(vistaUsuarios.crearVista(), 800, 200);
+        Scene escena = new Scene(vistaUsuarios.crearVista(), 800, 300);
 
         stage.setScene(escena);
 
