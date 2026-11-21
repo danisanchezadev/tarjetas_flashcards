@@ -1,14 +1,20 @@
 package app;
 
+import database.InicializadorDB;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import views.VistaUsuarios;
 
+import java.io.File;
+
 public class FlashcardsApp extends Application {
 
     @Override
     public void start(Stage stage) {
+
+        InicializadorDB inicializadorDB = new InicializadorDB();
+        inicializadorDB.inicializar();
 
         VistaUsuarios vistaUsuarios = new VistaUsuarios();
 

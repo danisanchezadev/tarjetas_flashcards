@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import models.Tematica;
 import models.Usuario;
 
@@ -28,6 +30,7 @@ public class VistaTematicas {
 
     public VBox crearVista() {
 
+        //Creo el contenedor principal y le doy configuración
         VBox contenedorPrincipal = new VBox(10);
 
         contenedorPrincipal.setPadding(new Insets(30));
@@ -35,10 +38,17 @@ public class VistaTematicas {
         contenedorPrincipal.setAlignment(Pos.CENTER);
         contenedorPrincipal.setSpacing(20);
 
+        //Creo el título y el botón de añadir una nueva temática y las añado a un contenedor horizontal
         Label titulo = new Label("Lista de temáticas");
+        titulo.setFont(new Font("Arial", 20));
 
-        contenedorPrincipal.getChildren().add(titulo);
+        Button nuevaTematica = agregarBotonNuevaTematica();
 
+        HBox contenedorTitulo = new HBox(10, titulo, nuevaTematica);
+        contenedorTitulo.setAlignment(Pos.TOP_CENTER);
+        contenedorTitulo.setSpacing(10);
+
+        //creo el contenedor para las tarjetas de temáticas y le doy configuración
         HBox contenedorTematicas = new HBox();
 
         contenedorTematicas.setAlignment(Pos.CENTER);
@@ -54,8 +64,10 @@ public class VistaTematicas {
 
         }
 
-        contenedorPrincipal.getChildren().add(contenedorTematicas);
+        //Añado titulo y todas las temáticas al contenedor principal
+        contenedorPrincipal.getChildren().addAll(contenedorTitulo, contenedorTematicas);
 
+        //Añado el botón volver
         Button volver = botonVolver();
 
         contenedorPrincipal.getChildren().add(volver);
@@ -85,7 +97,6 @@ public class VistaTematicas {
 
         //Obtengo la imagen genérica de usuario desde el método imagenUsuario
         Label iconoTematica = new Label();
-        iconoTematica.setGraphic(new Imagenes(("/img/user.png"), 100, 100));
 
         tarjetaTematica.getChildren().add(iconoTematica);
 
@@ -122,8 +133,35 @@ public class VistaTematicas {
             scene.setRoot(vu.crearVista());
 
 
+
+
         });
 
         return boton;
+    }
+
+    private Button agregarBotonNuevaTematica(){
+
+        Button boton = new Button();
+        boton.setGraphic(new Imagenes(("/img/agregar.png"),10,10));
+
+        boton.setOnAction(event ->{
+
+            VistaNuevaTematica vistaNuevaTematica = new VistaNuevaTematica(usuario);
+
+            Scene scene = boton.getScene();
+
+            scene.setRoot(vistaNuevaTematica.crearVista());
+
+            Stage stage = (Stage) scene.getWindow();
+
+            stage.setWidth(320);
+            stage.setHeight(100);
+            stage.centerOnScreen();
+
+        });
+        return boton;
+
+
     }
 }

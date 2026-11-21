@@ -23,7 +23,6 @@ public class VistaUsuarios {
 
     public VBox crearVista() {
 
-
         VBox contenedor = new VBox();
 
         contenedor.setPadding(new Insets(30));
@@ -32,11 +31,18 @@ public class VistaUsuarios {
 
         titulo.setFont(new Font("Arial", 20));
 
+        Button nuevoUsuario = agregarNuevoUsuario();
+
+        HBox tituloYAgregar = new HBox(10);
+        tituloYAgregar.setAlignment(Pos.TOP_CENTER);
+
+        tituloYAgregar.getChildren().addAll(titulo, nuevoUsuario);
+
         //VBox.setMargin(titulo, new Insets(0));
         contenedor.setAlignment(Pos.TOP_CENTER);
         contenedor.setSpacing(30);
 
-        contenedor.getChildren().add(titulo);
+        contenedor.getChildren().add(tituloYAgregar);
 
         HBox contenedorUsuarios = new HBox();
 
@@ -53,6 +59,8 @@ public class VistaUsuarios {
 
                 contenedorUsuarios.getChildren().add(tarjetaUsuario);
             }
+
+            //Agregar una tarjeta o función de nuevo usuario.
 
         }catch (SQLException e){
             System.out.println(e.getMessage());
@@ -118,8 +126,14 @@ public class VistaUsuarios {
 
             scene.setRoot(vt.crearVista());
 
-        });
+            Stage stage = (Stage) scene.getWindow();
 
+            stage.setWidth(800);
+            stage.setWidth(325);
+            stage.centerOnScreen();
+            stage.setTitle("Temáticas de " + usuario.getNombre());
+
+        });
         return boton;
     }
 
@@ -141,12 +155,31 @@ public class VistaUsuarios {
             stage.setWidth(400);
             stage.setHeight(175);
             stage.centerOnScreen();
-
         });
-
 
         return boton;
     }
 
+    private Button agregarNuevoUsuario(){
 
+        Button boton = new Button();
+        boton.setGraphic(new Imagenes(("/img/agregar.png"),10,10));
+
+        boton.setOnAction(event ->{
+
+            VistaNuevoUsuario vistaNuevoUsuario = new VistaNuevoUsuario();
+
+            Scene scene = boton.getScene();
+
+            scene.setRoot(vistaNuevoUsuario.crearVista());
+
+            Stage stage = (Stage) scene.getWindow();
+
+            stage.setWidth(320);
+            stage.setHeight(100);
+            stage.centerOnScreen();
+
+        });
+        return boton;
+    }
 }
