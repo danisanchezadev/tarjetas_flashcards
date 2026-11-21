@@ -88,7 +88,8 @@ public class UsuarioRepository implements Repository<Usuario> {
 
             int filasAfectadas = ps.executeUpdate();
 
-            System.out.println(filasAfectadas > 0 ? "Se eliminó el usuario " + id + ".": "No se encontró al usuario.");
+            System.out.println(filasAfectadas > 0 ? "Se eliminó el usuario " +
+                    id + ".": "No se encontró al usuario.");
         }
     }
 
@@ -105,7 +106,8 @@ public class UsuarioRepository implements Repository<Usuario> {
 
             int filasAfectadas = ps.executeUpdate();
 
-            System.out.println(filasAfectadas > 0 ? "Se editó el usuario " + entidad.getId() + ".": "No se encontró al usuario.");
+            System.out.println(filasAfectadas > 0 ? "Se editó el usuario " +
+                    entidad.getId() + ".": "No se encontró al usuario.");
 
         }
     }

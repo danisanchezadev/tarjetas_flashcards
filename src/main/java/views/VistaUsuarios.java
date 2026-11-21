@@ -10,6 +10,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import javafx.scene.control.Label;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import models.Usuario;
 
 import java.sql.SQLException;
@@ -27,6 +29,8 @@ public class VistaUsuarios {
         contenedor.setPadding(new Insets(30));
 
         Label titulo = new Label("Lista de usuarios");
+
+        titulo.setFont(new Font("Arial", 20));
 
         //VBox.setMargin(titulo, new Insets(0));
         contenedor.setAlignment(Pos.TOP_CENTER);
@@ -85,8 +89,7 @@ public class VistaUsuarios {
 
         HBox botones = new HBox();
 
-        Button botonEditar = new Button();
-        botonEditar.setGraphic(new Imagenes(("/img/editar.png"),10,10));
+        Button botonEditar = agregarBotonEditar(user);
 
         Button usuario = botonUsuario(user);
 
@@ -119,4 +122,31 @@ public class VistaUsuarios {
 
         return boton;
     }
+
+    private Button agregarBotonEditar(Usuario usuario){
+
+        Button boton = new Button();
+        boton.setGraphic(new Imagenes(("/img/editar.png"),10,10));
+
+        boton.setOnAction(event ->{
+
+            VistaEditarUsuario vistaEditarUsuario = new VistaEditarUsuario(usuario);
+
+            Scene scene = boton.getScene();
+
+            scene.setRoot(vistaEditarUsuario.crearVista());
+
+            Stage stage = (Stage) scene.getWindow();
+
+            stage.setWidth(400);
+            stage.setHeight(175);
+            stage.centerOnScreen();
+
+        });
+
+
+        return boton;
+    }
+
+
 }
